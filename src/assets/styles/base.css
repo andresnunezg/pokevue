@@ -9,6 +9,14 @@
   font-weight: normal;
 }
 
+#app {
+  max-width: 1280px;
+  height: 100svh;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
 body {
   min-height: 100vh;
   color: var(--color-text-primary);
