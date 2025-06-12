@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ButtonComponent from '@/components/ButtonComponent.vue'
-import PikachuBackgroundIcon from '@/components/icons/PikachuBackgroundIcon.vue'
+import ButtonComponent from '@/pokemons/presentation/components/ButtonComponent.vue'
+import PikachuBackgroundIcon from '@/pokemons/presentation/components/icons/PikachuBackgroundIcon.vue'
 </script>
 
 <template>

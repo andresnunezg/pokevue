@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import AppRoutes from './AppRoutes'
 
 const router = createRouter({
@@ -8,12 +7,12 @@ const router = createRouter({
     {
       path: '/',
       name: AppRoutes.Home,
-      component: HomeView,
+      component: () => import('../pokemons/presentation/views/HomeView.vue'),
     },
     {
       path: `/${AppRoutes.Welcome}`,
       name: AppRoutes.Welcome,
-      component: () => import('../views/WelcomeView.vue'),
+      component: () => import('../pokemons/presentation/views/WelcomeView.vue'),
     },
   ],
 })

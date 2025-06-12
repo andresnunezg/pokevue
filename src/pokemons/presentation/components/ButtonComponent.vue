@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import ButtonVariant from '@/components/ButtonVariant'
+import ButtonVariant from '@/pokemons/presentation/components/ButtonVariant'
 
 interface Props {
   isDisabled?: boolean
