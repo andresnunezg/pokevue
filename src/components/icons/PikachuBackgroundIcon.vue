@@ -1,12 +1,12 @@
-<!-- TODO: PIKACHU BACKGROUND FROM PNG TO SVG -->
+<script setup lang="ts">
+import PikachuIcon from './PikachuIcon.vue';
+import EllipseIcon from './EllipseIcon.vue';
+</script>
+
 <template>
   <div class="pikachu-img">
-    <figure>
-      <img src="@/assets/images/Ellipse.png" alt="red-background" />
-    </figure>
-    <figure>
-      <img src="@/assets/images/Pikachu.png" alt="pikachu" />
-    </figure>
+    <ellipse-icon />
+    <pikachu-icon />
   </div>
 </template>
 
@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
 
-  figure {
+  svg {
     position: absolute;
     margin: 0;
     display: flex;
@@ -27,12 +27,12 @@
     justify-content: center;
   }
 
-  figure:first-child {
+  svg:first-child {
     z-index: 1;
     bottom: 0px;
   }
 
-  figure:last-child {
+  svg:last-child {
     z-index: 2;
     bottom: -12px;
     transform: translate(3%, 0%);
