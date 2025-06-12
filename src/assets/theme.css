@@ -1,0 +1,26 @@
+:root {
+  --color-yellow-1: rgb(225, 168, 79);
+  --color-red-1: rgb(233, 62, 66);
+  --color-red-2: rgb(176, 41, 41);
+  --color-gray-1: rgb(53, 53, 53);
+  --color-gray-2: rgb(94, 94, 94);
+  --color-gray-3: rgb(191, 191, 191);
+  --color-gray-4: rgb(232, 232, 232);
+  --color-white-1: rgb(249, 249, 249);
+  --color-white-2: rgb(245, 245, 245);
+}
+
+:root {
+  --color-main: var(--color-red-1);
+  --color-secondary: var(--color-red-2);
+  --color-tertiary: var(--color-red-2);
+
+  --color-btn-bg-primary: var(--color-main);
+  --color-btn-text-primary: var(--color-white-1);
+  --color-btn-marked: var(--color-yellow-1);
+
+  --color-text-primary: var(--color-gray-2);
+
+  --color-bg-main: var(--color-white-1);
+  --color-bg-secondary: var(--color-white-2);
+}
