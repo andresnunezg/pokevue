@@ -10,7 +10,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
-  variant: ButtonVariant.Primary
+  variant: ButtonVariant.Primary,
 })
 
 const btnClasses = computed(() => [

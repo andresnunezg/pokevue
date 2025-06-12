@@ -25,16 +25,18 @@ describe('Pokemon', () => {
       const invalidId = 0
       const validName = 'Pikachu'
 
-      expect(() => new Pokemon(invalidId, validName, validAttributes, [validType]))
-        .toThrowError(new PokemonError('Pokemon ID must be greater than 0'))
+      expect(() => new Pokemon(invalidId, validName, validAttributes, [validType])).toThrowError(
+        new PokemonError('Pokemon ID must be greater than 0'),
+      )
     })
 
     it('should throw error when name contains invalid characters', () => {
       const validId = 25
       const invalidName = 'Pikachu!'
 
-      expect(() => new Pokemon(validId, invalidName, validAttributes, [validType]))
-        .toThrowError(new PokemonError('Pokemon name contains invalid characters'))
+      expect(() => new Pokemon(validId, invalidName, validAttributes, [validType])).toThrowError(
+        new PokemonError('Pokemon name contains invalid characters'),
+      )
     })
 
     it('should throw error when types array is empty', () => {
@@ -42,8 +44,9 @@ describe('Pokemon', () => {
       const validName = 'Pikachu'
       const emptyTypes: PokemonType[] = []
 
-      expect(() => new Pokemon(validId, validName, validAttributes, emptyTypes))
-        .toThrowError(new PokemonTypeError('Pokemon must have at least one type'))
+      expect(() => new Pokemon(validId, validName, validAttributes, emptyTypes)).toThrowError(
+        new PokemonTypeError('Pokemon must have at least one type'),
+      )
     })
   })
 

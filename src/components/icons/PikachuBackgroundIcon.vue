@@ -1,3 +1,4 @@
+<!-- TODO: PIKACHU BACKGROUND FROM PNG TO SVG -->
 <template>
   <div class="pikachu-img">
     <figure>

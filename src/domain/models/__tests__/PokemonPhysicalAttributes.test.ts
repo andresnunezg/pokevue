@@ -18,24 +18,27 @@ describe('PokemonPhysicalAttributes', () => {
       const zeroHeight = 0
       const validWeight = 69
 
-      expect(() => new PokemonPhysicalAttributes(zeroHeight, validWeight))
-        .toThrowError(new PhysicalAttrError('Height must be greater than 0'))
+      expect(() => new PokemonPhysicalAttributes(zeroHeight, validWeight)).toThrowError(
+        new PhysicalAttrError('Height must be greater than 0'),
+      )
     })
 
     it('should throw error when weight is zero', () => {
       const validHeight = 7
       const zeroWeight = 0
 
-      expect(() => new PokemonPhysicalAttributes(validHeight, zeroWeight))
-        .toThrowError(new PhysicalAttrError('Weight must be greater than 0'))
+      expect(() => new PokemonPhysicalAttributes(validHeight, zeroWeight)).toThrowError(
+        new PhysicalAttrError('Weight must be greater than 0'),
+      )
     })
 
     it('should throw error when height is negative', () => {
       const negativeHeight = -1
       const validWeight = 69
 
-      expect(() => new PokemonPhysicalAttributes(negativeHeight, validWeight))
-        .toThrowError(new PhysicalAttrError('Height must be greater than 0'))
+      expect(() => new PokemonPhysicalAttributes(negativeHeight, validWeight)).toThrowError(
+        new PhysicalAttrError('Height must be greater than 0'),
+      )
     })
   })
 })

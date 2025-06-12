@@ -18,16 +18,18 @@ describe('PokemonType', () => {
       const validId = 1
       const emptyName = ''
 
-      expect(() => new PokemonType(validId, emptyName))
-        .toThrowError(new PokemonTypeError('PokemonType name cannot be empty'))
+      expect(() => new PokemonType(validId, emptyName)).toThrowError(
+        new PokemonTypeError('PokemonType name cannot be empty'),
+      )
     })
 
     it('should throw error when name contains only whitespace', () => {
       const validId = 1
       const whitespaceOnlyName = '   '
 
-      expect(() => new PokemonType(validId, whitespaceOnlyName))
-        .toThrowError(new PokemonTypeError('PokemonType name cannot be empty'))
+      expect(() => new PokemonType(validId, whitespaceOnlyName)).toThrowError(
+        new PokemonTypeError('PokemonType name cannot be empty'),
+      )
     })
   })
 })

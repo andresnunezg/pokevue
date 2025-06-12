@@ -1,6 +1,6 @@
 enum AppRoutes {
-  Welcome = "welcome",
-  Home = "home"
+  Welcome = 'welcome',
+  Home = 'home',
 }
 
 export default AppRoutes

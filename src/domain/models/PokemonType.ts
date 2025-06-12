@@ -1,12 +1,11 @@
-import { validateId } from "../common/validations"
-import { PokemonTypeError } from "../errors";
+import { validateId } from '../common/validations'
+import { PokemonTypeError } from '../errors'
 
 export default class PokemonType {
   constructor(
     public id: number,
     public name: string,
-  )
-  {
+  ) {
     this.validate()
   }
 
@@ -17,7 +16,7 @@ export default class PokemonType {
 
   private validateTypeName() {
     if (!this.name || this.name.trim().length === 0) {
-      throw new PokemonTypeError("PokemonType name cannot be empty");
+      throw new PokemonTypeError('PokemonType name cannot be empty')
     }
   }
 }

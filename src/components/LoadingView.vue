@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import LoaderIcon from "@/components/icons/LoaderIcon.vue"
+import LoaderIcon from '@/components/icons/LoaderIcon.vue'
 </script>
 
 <template>
   <section class="container">
     <div class="loader-icon">
-      <loader-icon  />
+      <loader-icon />
     </div>
   </section>
 </template>
