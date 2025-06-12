@@ -8,6 +8,10 @@
   --color-gray-4: rgb(232, 232, 232);
   --color-white-1: rgb(249, 249, 249);
   --color-white-2: rgb(245, 245, 245);
+
+  --font-size-15: 15px;
+  --font-size-24: 24px;
+  --font-size-32: 32px;
 }
 
 :root {
@@ -23,4 +27,8 @@
 
   --color-bg-main: var(--color-white-1);
   --color-bg-secondary: var(--color-white-2);
+
+  --text-md: var(--font-size-15);
+  --text-lg: var(--font-size-24);
+  --text-xl: var(--font-size-32);
 }
