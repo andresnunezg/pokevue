@@ -1,4 +1,4 @@
-import { validateId } from '../common/validations'
+import { validateId } from '@/common/models/validations'
 import { PokemonTypeError } from '../errors'
 
 export default class PokemonType {
