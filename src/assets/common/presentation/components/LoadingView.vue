@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoaderIcon from '@/components/icons/LoaderIcon.vue'
+import LoaderIcon from '@/pokemons/presentation/components/icons/LoaderIcon.vue'
 </script>
 
 <template>

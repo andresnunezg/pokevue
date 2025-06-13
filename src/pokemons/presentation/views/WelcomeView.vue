@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import ButtonComponent from '@/pokemons/presentation/components/ButtonComponent.vue'
+import { useRouter } from 'vue-router';
+import ButtonComponent from '@/assets/common/presentation/components/ButtonComponent.vue'
 import PikachuBackgroundIcon from '@/pokemons/presentation/components/icons/PikachuBackgroundIcon.vue'
+import AppRoutes from '@/router/AppRoutes';
+
+const router = useRouter();
+
+const handleGetStarted = () => {
+  router.push({ name: AppRoutes.Home })
+}
 </script>
 
 <template>
-  <main class="welcome">
+  <main class="welcome-container">
     <section class="card">
       <div class="pikachu-img-container">
         <pikachu-background-icon />
@@ -15,14 +23,14 @@ import PikachuBackgroundIcon from '@/pokemons/presentation/components/icons/Pika
         Pokémon world.
       </p>
       <div class="btn-container">
-        <button-component label="Get started" />
+        <button-component @click="handleGetStarted" label="Get started" />
       </div>
     </section>
   </main>
 </template>
 
 <style scoped lang="css">
-.welcome {
+.welcome-container {
   display: grid;
   place-items: center;
   width: 100%;
