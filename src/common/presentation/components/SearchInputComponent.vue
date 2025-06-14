@@ -44,7 +44,7 @@ const handleIconClick = () => {
   min-width: 100%;
   border: none;
   border-radius: var(--border-radius-md);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 10px 0px;
 }
 
 .search-icon {
@@ -65,7 +65,8 @@ const handleIconClick = () => {
 
 .search-input {
   width: 100%;
-  padding: 10px 16px 10px 40px;
+  padding: var(--spacing-md);
+  padding-left: 40px;
   border: 1px solid transparent;
   border-radius: var(--border-radius-md);
   background-color: var(--color-bg-tertiary);

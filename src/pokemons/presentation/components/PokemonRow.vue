@@ -22,5 +22,6 @@ defineProps<{ pokemon: PokemonBase }>()
   font-weight: 500;
   background-color: var(--color-bg-tertiary);
   padding: var(--spacing-sm);
+  cursor: pointer;
 }
 </style>
