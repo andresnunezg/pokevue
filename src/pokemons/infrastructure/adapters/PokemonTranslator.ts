@@ -28,24 +28,21 @@ export class PokemonTranslator {
   static toDomain(dto: PokemonDto): Pokemon {
     const physicalAttributes = {
       height: dto.height,
-      weight: dto.weight
+      weight: dto.weight,
     } as PokemonPhysicalAttributes
     return new Pokemon(
       dto.id,
       dto.name,
       physicalAttributes,
-      PokemonTypeTranslator.toDomainList(dto.types.map(t => t.type)),
-      dto.sprites.other['official-artwork'].front_default
+      PokemonTypeTranslator.toDomainList(dto.types.map((t) => t.type)),
+      dto.sprites.other['official-artwork'].front_default,
     )
   }
 }
 
 class PokemonTypeTranslator {
   static toDomain(dto: PokemonTypeDto): PokemonType {
-    return new PokemonType(
-      PokemonBaseTranslator.extractIdFromUrl(dto.url) ?? 0,
-      dto.name
-    )
+    return new PokemonType(PokemonBaseTranslator.extractIdFromUrl(dto.url) ?? 0, dto.name)
   }
 
   static toDomainList(dtos: PokemonTypeDto[]): PokemonType[] {

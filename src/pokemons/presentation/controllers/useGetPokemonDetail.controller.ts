@@ -1,8 +1,8 @@
-import { ref, computed, type Ref, watch } from "vue";
-import { useQuery } from "@tanstack/vue-query";
-import { PokemonUseCase } from "@/pokemons/domain/repository/PokemonUseCase";
-import PokemonRepositoryImpl from "@/pokemons/infrastructure/repository/PokemonRepositoryImpl";
-import type { PokemonBase } from "@/pokemons/domain/models/Pokemon";
+import { ref, computed, type Ref, watch } from 'vue'
+import { useQuery } from '@tanstack/vue-query'
+import { PokemonUseCase } from '@/pokemons/domain/repository/PokemonUseCase'
+import PokemonRepositoryImpl from '@/pokemons/infrastructure/repository/PokemonRepositoryImpl'
+import type { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 
 const concreteImpl = new PokemonRepositoryImpl()
 const pokemonUseCase = new PokemonUseCase(concreteImpl)
@@ -19,7 +19,7 @@ export default function useGetPokemonDetail() {
     data: pokemonDetail,
     isPending: isPokemonDetailLoading,
     isFetching: isPokemonDetailFetching,
-    refetch
+    refetch,
   } = useQuery({
     queryKey: ['pokemonDetail', selectedPokemon.value?.name],
     queryFn: () => pokemonUseCase.getPokemonDetailByName(selectedPokemon.value!.name),

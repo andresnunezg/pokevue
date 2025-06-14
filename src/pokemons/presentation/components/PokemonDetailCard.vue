@@ -1,30 +1,27 @@
 <script setup lang="ts">
-import capitalize from '@/common/utils/capitalize';
+import capitalize from '@/common/utils/capitalize'
 import type Pokemon from '@/pokemons/domain/models/Pokemon'
 import PokemonDetailRow from './PokemonDetailRow.vue'
-import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue';
-import { ref } from 'vue';
+import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue'
+import { ref } from 'vue'
 
 const props = defineProps<{
   pokemon: Pokemon
 }>()
 
 const { weight, height } = props.pokemon.physicalAttributes
-const types = props.pokemon.types
-  .map(t => capitalize(t.name))
-  .join(', ')
+const types = props.pokemon.types.map((t) => capitalize(t.name)).join(', ')
 
-const defaultLabel = "Share to my friends"
+const defaultLabel = 'Share to my friends'
 const buttonLabel = ref(defaultLabel)
 
 const handleShareClick = () => {
-    navigator.clipboard.writeText(props.pokemon.getInfoAsCsv)
-    .then(() => {
-      buttonLabel.value = "Copied!"
-      setTimeout(() => {
-        buttonLabel.value = defaultLabel
-      }, 2000)
-    })
+  navigator.clipboard.writeText(props.pokemon.getInfoAsCsv).then(() => {
+    buttonLabel.value = 'Copied!'
+    setTimeout(() => {
+      buttonLabel.value = defaultLabel
+    }, 2000)
+  })
 }
 </script>
 
@@ -33,7 +30,7 @@ const handleShareClick = () => {
     <header class="detail-card__header">
       <div class="detail-card__header-background"></div>
       <div v-show="pokemon.frontDefaultArtwork" class="detail-card_header-pokemon">
-        <img :src="pokemon.frontDefaultArtwork" loading="eager" :alt="pokemon.name">
+        <img :src="pokemon.frontDefaultArtwork" loading="eager" :alt="pokemon.name" />
       </div>
     </header>
     <div class="detail-card__content">

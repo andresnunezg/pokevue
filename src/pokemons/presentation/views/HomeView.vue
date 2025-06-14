@@ -25,8 +25,16 @@ const handleScroll = () => {
   }
 }
 
-const { showModal, selectedPokemon, pokemonDetail, isPokemonDetailLoading, isPokemonDetailFetching } = useGetPokemonDetail()
-const isDetailLoading = computed(() => isPokemonDetailFetching.value || isPokemonDetailLoading.value)
+const {
+  showModal,
+  selectedPokemon,
+  pokemonDetail,
+  isPokemonDetailLoading,
+  isPokemonDetailFetching,
+} = useGetPokemonDetail()
+const isDetailLoading = computed(
+  () => isPokemonDetailFetching.value || isPokemonDetailLoading.value,
+)
 const handlePokemonSelect = (pokemon: PokemonBase) => {
   showModal.value = !!pokemon
   selectedPokemon.value = pokemon

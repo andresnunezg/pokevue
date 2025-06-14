@@ -1,4 +1,4 @@
-import { PokemonError } from '../errors';
+import { PokemonError } from '../errors'
 import type { PokemonBase } from '../models/Pokemon'
 import type Pokemon from '../models/Pokemon'
 import type { PokemonRepository } from './PokemonRepository'

@@ -2,7 +2,7 @@ import HttpDataService from '@/data/DataService'
 import type Pokemon from '@/pokemons/domain/models/Pokemon'
 import { type PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import type { PokemonRepository } from '@/pokemons/domain/repository/PokemonRepository'
-import type {  PokemonBaseDto, PokemonDto } from '../adapters/PokemonDto'
+import type { PokemonBaseDto, PokemonDto } from '../adapters/PokemonDto'
 import { PokemonBaseTranslator, PokemonTranslator } from '../adapters/PokemonTranslator'
 
 export default class PokemonRepositoryImpl implements PokemonRepository {
@@ -34,8 +34,7 @@ export default class PokemonRepositoryImpl implements PokemonRepository {
 
   async getPokemonDetailByName(name: Pokemon['name']): Promise<Pokemon> {
     const detailUrl = `pokemon/${name}`
-    const response = await this.dataService.get<PokemonDto>(detailUrl, {}
-    )
+    const response = await this.dataService.get<PokemonDto>(detailUrl, {})
 
     return PokemonTranslator.toDomain(response)
   }

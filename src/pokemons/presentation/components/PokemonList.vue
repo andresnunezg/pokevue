@@ -11,11 +11,7 @@ const emit = defineEmits<{
 <template>
   <section class="pokemon-list-container">
     <ul class="pokemon-row-container" v-for="(pokemonRow, index) in pokemons" :key="index">
-      <pokemon-row
-        :key="pokemonRow.id"
-        :pokemon="pokemonRow"
-        @select="emit('select', $event)"
-      />
+      <pokemon-row :key="pokemonRow.id" :pokemon="pokemonRow" @select="emit('select', $event)" />
     </ul>
   </section>
 </template>

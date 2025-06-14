@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
-  title: string,
-  value: string | number,
+  title: string
+  value: string | number
 }>()
 </script>
 
@@ -20,7 +20,8 @@ defineProps<{
   gap: var(--spacing-xs);
   padding: var(--spacing-sm);
   border-bottom: 1px solid var(--color-divider);
-  & .title, .value {
+  & .title,
+  .value {
     font-size: var(--text-2md);
     line-height: 150%;
   }

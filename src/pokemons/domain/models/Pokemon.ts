@@ -15,7 +15,7 @@ export default class Pokemon extends PokemonBase {
     public name: string,
     public physicalAttributes: PokemonPhysicalAttributes,
     public types: PokemonType[],
-    public frontDefaultArtwork: string
+    public frontDefaultArtwork: string,
   ) {
     super(id, name)
     this.validate()
@@ -58,7 +58,7 @@ export default class Pokemon extends PokemonBase {
   get getInfoAsCsv(): string {
     const { height, weight } = this.physicalAttributes
     const separator = ','
-    const types = this.types.map(t => t.name).join(';')
+    const types = this.types.map((t) => t.name).join(';')
     const headers = ['name', 'height', 'weight', 'types', 'imageUrl'].join(separator)
     const basicInfo = [this.name, height, weight, types, this.frontDefaultArtwork].join(separator)
     return `${headers}\r\n${basicInfo}`
