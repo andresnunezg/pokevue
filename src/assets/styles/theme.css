@@ -11,7 +11,7 @@
   --color-white-3: #fff;
 
   --font-size-16: 16px;
-  --font-size-24: 24px;
+  --font-size-22: 24px;
   --font-size-32: 32px;
 
   --spacing-2xs: 4px;
@@ -37,10 +37,10 @@
 
   --color-bg-main: var(--color-white-1);
   --color-bg-secondary: var(--color-white-2);
-  --color-bg-tertiary: var(--color-white);
+  --color-bg-tertiary: var(--color-white-3);
 
   --text-md: var(--font-size-16);
-  --text-lg: var(--font-size-24);
+  --text-lg: var(--font-size-22);
   --text-xl: var(--font-size-32);
 
   --border-radius-md: 5px;
