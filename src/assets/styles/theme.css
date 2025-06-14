@@ -14,6 +14,7 @@
   --font-size-18: 18px;
   --font-size-22: 24px;
   --font-size-32: 32px;
+  --font-size-36: 36px;
 
   --spacing-2xs: 4px;
   --spacing-xs: 8px;
@@ -44,6 +45,7 @@
   --text-2md: var(--font-size-18);
   --text-lg: var(--font-size-22);
   --text-xl: var(--font-size-32);
+  --text-2xl: var(--font-size-36);
 
   --border-radius-md: 5px;
 

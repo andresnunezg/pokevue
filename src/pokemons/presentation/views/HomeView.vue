@@ -60,6 +60,11 @@ watch(showDetailModal, (newVal) => {
   selectedPokemon.value = null
   pokemonSearched.value = null
 })
+
+const handleGoHome = () => {
+  searchInput.value = ''
+  showEmptyResult.value = false
+}
 </script>
 
 <template>
@@ -68,7 +73,7 @@ watch(showDetailModal, (newVal) => {
       <div class="search-input-container">
         <search-input-component v-model="searchInput" @search="handlePokemonSearch" />
       </div>
-      <empty-result v-if="showEmptyResult" />
+      <empty-result @go-home="handleGoHome" v-if="showEmptyResult" />
       <div
         v-else-if="pokemonsList"
         ref="scrollContainer"
