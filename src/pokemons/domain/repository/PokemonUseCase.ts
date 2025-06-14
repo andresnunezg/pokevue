@@ -16,4 +16,8 @@ export class PokemonUseCase {
     if (name.trim().length === 0) throw new PokemonError('Pokemon name cannot be empty')
     return this.pokemonRepository.getPokemonDetailByName(name.trim())
   }
+
+  searchPokemonByName = async (name: Pokemon['name']): Promise<Pokemon | null> => {
+    return this.pokemonRepository.searchPokemonByName(name)
+  }
 }

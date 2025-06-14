@@ -14,7 +14,7 @@ export default function useGetPokemons() {
     isFetching,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['projects'],
+    queryKey: ['pokemons'],
     queryFn: ({ pageParam }) => pokemonUseCase.getPokemonList(pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage, _) => lastPage.nextPokemons,

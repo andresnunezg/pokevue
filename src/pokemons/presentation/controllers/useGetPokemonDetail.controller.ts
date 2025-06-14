@@ -8,7 +8,6 @@ const concreteImpl = new PokemonRepositoryImpl()
 const pokemonUseCase = new PokemonUseCase(concreteImpl)
 
 export default function useGetPokemonDetail() {
-  const showModal = ref(false)
   const selectedPokemon: Ref<PokemonBase | null> = ref(null)
 
   watch(selectedPokemon, async () => {
@@ -17,7 +16,6 @@ export default function useGetPokemonDetail() {
 
   const {
     data: pokemonDetail,
-    isPending: isPokemonDetailLoading,
     isFetching: isPokemonDetailFetching,
     refetch,
   } = useQuery({
@@ -27,11 +25,11 @@ export default function useGetPokemonDetail() {
     staleTime: 1000 * 60 * 5,
   })
 
+  const isDetailLoading = computed(() => isPokemonDetailFetching.value)
+
   return {
-    showModal,
     selectedPokemon,
     pokemonDetail,
-    isPokemonDetailLoading,
-    isPokemonDetailFetching,
+    isDetailLoading,
   }
 }

@@ -35,7 +35,13 @@ export default class PokemonRepositoryImpl implements PokemonRepository {
   async getPokemonDetailByName(name: Pokemon['name']): Promise<Pokemon> {
     const detailUrl = `pokemon/${name}`
     const response = await this.dataService.get<PokemonDto>(detailUrl, {})
+    return PokemonTranslator.toDomain(response)
+  }
 
+  async searchPokemonByName(name: Pokemon['name']): Promise<Pokemon | null> {
+    const detailUrl = `pokemon/${name}`
+    const response = await this.dataService.get<PokemonDto>(detailUrl, {})
+    if (!response) return null
     return PokemonTranslator.toDomain(response)
   }
 }

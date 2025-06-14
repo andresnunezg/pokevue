@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import capitalize from '@/common/utils/capitalize'
 import type Pokemon from '@/pokemons/domain/models/Pokemon'
-import PokemonDetailRow from './PokemonDetailRow.vue'
 import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue'
-import { ref } from 'vue'
+import PokemonDetailRow from './PokemonDetailRow.vue'
 
 const props = defineProps<{
   pokemon: Pokemon

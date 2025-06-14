@@ -1,30 +1,28 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
 import SearchIcon from './icons/SearchIcon.vue'
 
-const emit = defineEmits(['search'])
+const emit = defineEmits<{
+  (e: 'search', value: string): void
+}>()
 
-const searchQuery = ref('')
-let debounceTimer: number
-
-watch(searchQuery, (newValue) => {
-  if (debounceTimer) {
-    clearTimeout(debounceTimer)
-  }
-
-  debounceTimer = setTimeout(() => {
-    emit('search', newValue)
-  }, 500)
+const searchQuery = defineModel<string>({
+  default: '',
 })
 
-const handleIconClick = () => {
+const handleSearch = () => {
   emit('search', searchQuery.value)
+}
+
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Enter') {
+    handleSearch()
+  }
 }
 </script>
 
 <template>
   <div class="search-container">
-    <div class="search-icon" @click="handleIconClick">
+    <div class="search-icon" @click="handleSearch">
       <search-icon />
     </div>
     <input
@@ -33,6 +31,7 @@ const handleIconClick = () => {
       type="text"
       placeholder="Search"
       class="search-input"
+      @keydown="handleKeydown"
     />
   </div>
 </template>
@@ -61,6 +60,7 @@ const handleIconClick = () => {
 
 .search-icon:hover {
   color: #3b82f6;
+  /* TODO CHECK THIS */
 }
 
 .search-input {
