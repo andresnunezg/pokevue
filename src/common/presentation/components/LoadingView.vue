@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoaderIcon from '@/pokemons/presentation/components/icons/LoaderIcon.vue'
+import LoaderIcon from './icons/LoaderIcon.vue';
 </script>
 
 <template>
@@ -25,35 +25,5 @@ import LoaderIcon from '@/pokemons/presentation/components/icons/LoaderIcon.vue'
   animation:
     shake 1s ease-in-out 0.5s 2,
     catch 1s ease 2.5s infinite;
-}
-
-@keyframes shake {
-  0% {
-    transform: translateX(0) rotate(0);
-  }
-  20% {
-    transform: translateX(-10px) rotate(-20deg);
-  }
-  30% {
-    transform: translateX(10px) rotate(20deg);
-  }
-  50% {
-    transform: translateX(-5px) rotate(-10deg);
-  }
-  60% {
-    transform: translateX(5px) rotate(10deg);
-  }
-  100% {
-    transform: translateX(0) rotate(0);
-  }
-}
-
-@keyframes catch {
-  0% {
-    filter: saturate(1.5) brightness(1.5);
-  }
-  100% {
-    filter: saturate(0.8) brightness(0.8);
-  }
 }
 </style>
