@@ -9,16 +9,19 @@ const pokemonUseCase = new PokemonUseCase(concreteImpl)
 
 export default function useSearchPokemonByName() {
   const searchInput = ref('')
+  const showEmptyResult = ref(false)
   const pokemonSearched: Ref<Pokemon | null> = ref(null)
 
-  const {
-    mutate: searchPokemon,
-    isPending: isPokemonSearchPending,
-    error: errorPokemonSearch,
-  } = useMutation({
-    mutationFn: () => pokemonUseCase.searchPokemonByName(searchInput.value.toLocaleLowerCase()),
+  const { mutate: searchPokemon, isPending: isPokemonSearchPending } = useMutation({
+    mutationFn: () => {
+      showEmptyResult.value = false
+      return pokemonUseCase.searchPokemonByName(searchInput.value.toLocaleLowerCase())
+    },
     onSuccess: (data) => {
       pokemonSearched.value = data
+    },
+    onError: () => {
+      showEmptyResult.value = true
     },
   })
 
@@ -33,7 +36,7 @@ export default function useSearchPokemonByName() {
     searchInput,
     pokemonSearched,
     isLoadingSearch,
-    errorPokemonSearch,
+    showEmptyResult,
     triggerSearch,
   }
 }

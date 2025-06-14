@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useTemplateRef, computed, ref, watch } from 'vue'
-import { useQueryClient } from '@tanstack/vue-query'
 import { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import useGetPokemons from '../controllers/useGetPokemons.controller'
 import useGetPokemonDetail from '../controllers/useGetPokemonDetail.controller'
@@ -10,8 +9,8 @@ import PokemonList from '../components/PokemonList.vue'
 import LoadingComponent from '@/common/presentation/components/LoadingComponent.vue'
 import ModalComponent from '@/common/presentation/components/ModalComponent.vue'
 import PokemonDetailCard from '../components/PokemonDetailCard.vue'
+import EmptyResult from '../components/EmptyResult.vue'
 
-const queryClient = useQueryClient()
 const showDetailModal = ref(false)
 
 const { pokemonsList, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } =
@@ -31,21 +30,25 @@ const handleScroll = () => {
 }
 
 const { selectedPokemon, pokemonDetail, isDetailLoading } = useGetPokemonDetail()
-
 const handlePokemonSelect = (pokemon: PokemonBase) => {
-  queryClient.resetQueries({ queryKey: ['pokemonSearch'] })
   showDetailModal.value = !!pokemon
   selectedPokemon.value = pokemon
 }
 
-const { searchInput, pokemonSearched, isLoadingSearch, triggerSearch } = useSearchPokemonByName()
-
+const { searchInput, pokemonSearched, isLoadingSearch, triggerSearch, showEmptyResult } =
+  useSearchPokemonByName()
 const handlePokemonSearch = async (searchVal: string) => {
-  queryClient.resetQueries({ queryKey: ['pokemonDetail'] })
-  showDetailModal.value = true
+  showEmptyResult.value = false
   searchInput.value = searchVal
-  await triggerSearch()
+  if (searchInput.value.trim().length !== 0) {
+    await triggerSearch()
+    showDetailModal.value = true
+  }
 }
+watch(showEmptyResult, (newVal) => {
+  if (!newVal) return
+  showDetailModal.value = false
+})
 
 const detailPokemon = computed(() => {
   if (pokemonSearched.value) return pokemonSearched.value
@@ -61,11 +64,17 @@ watch(showDetailModal, (newVal) => {
 
 <template>
   <main class="home-container">
-    <section v-if="pokemonsList" class="pokemon-list">
+    <section class="pokemon-list">
       <div class="search-input-container">
         <search-input-component v-model="searchInput" @search="handlePokemonSearch" />
       </div>
-      <div ref="scrollContainer" class="scroll-container" @scroll="handleScroll">
+      <empty-result v-if="showEmptyResult" />
+      <div
+        v-else-if="pokemonsList"
+        ref="scrollContainer"
+        class="scroll-container"
+        @scroll="handleScroll"
+      >
         <pokemon-list
           v-for="(group, index) in pokemonsList.pages"
           :key="index"
@@ -78,12 +87,11 @@ watch(showDetailModal, (newVal) => {
       </div>
     </section>
   </main>
-  <modal-component v-model="showDetailModal">
+  <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
     <div v-if="isDetailLoading || isLoadingSearch" class="detail-loader-container">
       <loading-component />
     </div>
     <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />
-    <!-- TODO: Manage error -->
   </modal-component>
 </template>
 
