@@ -1,7 +1,18 @@
+<script lang="ts" setup>
+interface Props {
+  width?: string
+  height?: string
+}
+withDefaults(defineProps<Props>(), {
+  width: "106",
+  height: "106"
+})
+</script>
+
 <template>
   <svg
-    width="106"
-    height="106"
+    :width="width"
+    :height="height"
     viewBox="0 0 106 106"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
