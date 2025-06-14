@@ -7,6 +7,7 @@ import SearchInputComponent from '@/common/presentation/components/SearchInputCo
 import PokemonList from '../components/PokemonList.vue'
 import LoadingComponent from '@/common/presentation/components/LoadingComponent.vue'
 import ModalComponent from '@/common/presentation/components/ModalComponent.vue'
+import PokemonDetailCard from '../components/PokemonDetailCard.vue'
 
 const { pokemonsList, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } =
   useGetPokemons()
@@ -24,8 +25,10 @@ const handleScroll = () => {
   }
 }
 
-const { showModal, selectedPokemon, pokemonDetail, isPokemonDetailLoading } = useGetPokemonDetail()
+const { showModal, selectedPokemon, pokemonDetail, isPokemonDetailLoading, isPokemonDetailFetching } = useGetPokemonDetail()
+const isDetailLoading = computed(() => isPokemonDetailFetching.value || isPokemonDetailLoading.value)
 const handlePokemonSelect = (pokemon: PokemonBase) => {
+  showModal.value = !!pokemon
   selectedPokemon.value = pokemon
 }
 </script>
@@ -49,6 +52,13 @@ const handlePokemonSelect = (pokemon: PokemonBase) => {
       </div>
     </section>
   </main>
+  <modal-component v-model="showModal">
+    <div v-if="isDetailLoading" class="detail-loader-container">
+      <loading-component />
+    </div>
+    <pokemon-detail-card v-else-if="pokemonDetail" :pokemon="pokemonDetail" />
+    <!-- TODO: Manage error -->
+  </modal-component>
 </template>
 
 <style scoped lang="css">
@@ -62,12 +72,6 @@ const handlePokemonSelect = (pokemon: PokemonBase) => {
   & .search-input-container {
     margin-bottom: var(--spacing-2xl);
   }
-  & .loader-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: var(--spacing-xl) 0;
-  }
   & .pokemon-list {
     max-width: 640px;
     width: 100%;
@@ -76,5 +80,12 @@ const handlePokemonSelect = (pokemon: PokemonBase) => {
     overflow-y: auto;
     height: 80svh;
   }
+}
+& .loader-container,
+& .detail-loader-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xl) 0;
 }
 </style>

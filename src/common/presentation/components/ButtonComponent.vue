@@ -35,8 +35,8 @@ const btnClasses = computed(() => [
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 18px;
-  padding: 6px 12px;
+  border-radius: 22px;
+  padding: var(--spacing-xs) var(--spacing-md);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;

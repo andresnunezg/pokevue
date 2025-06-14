@@ -1,4 +1,4 @@
-import { ref, computed, type Ref, watchEffect, watch } from "vue";
+import { ref, computed, type Ref, watch } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 import { PokemonUseCase } from "@/pokemons/domain/repository/PokemonUseCase";
 import PokemonRepositoryImpl from "@/pokemons/infrastructure/repository/PokemonRepositoryImpl";
@@ -11,17 +11,22 @@ export default function useGetPokemonDetail() {
   const showModal = ref(false)
   const selectedPokemon: Ref<PokemonBase | null> = ref(null)
 
-  watch(selectedPokemon, (newVal) => {
-    showModal.value = !!newVal
+  watch(selectedPokemon, async () => {
+    await refetch()
   })
+
+  // TODO FIX LAYOUT OF MIXED OBJ PAGE GROUPS
 
   const {
     data: pokemonDetail,
     isPending: isPokemonDetailLoading,
+    isFetching: isPokemonDetailFetching,
+    refetch
   } = useQuery({
     queryKey: ['pokemonDetail', selectedPokemon.value?.name],
     queryFn: () => pokemonUseCase.getPokemonDetailByName(selectedPokemon.value!.name),
-    enabled: computed(() => !!selectedPokemon.value?.name)
+    enabled: computed(() => !!selectedPokemon.value?.name),
+    staleTime: 1000 * 60 * 5,
   })
 
   return {
@@ -29,5 +34,6 @@ export default function useGetPokemonDetail() {
     selectedPokemon,
     pokemonDetail,
     isPokemonDetailLoading,
+    isPokemonDetailFetching,
   }
 }

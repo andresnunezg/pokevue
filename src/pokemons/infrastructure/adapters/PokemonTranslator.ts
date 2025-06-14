@@ -34,7 +34,8 @@ export class PokemonTranslator {
       dto.id,
       dto.name,
       physicalAttributes,
-      PokemonTypeTranslator.toDomainList(dto.types.map(t => t.type))
+      PokemonTypeTranslator.toDomainList(dto.types.map(t => t.type)),
+      dto.sprites.other['official-artwork'].front_default
     )
   }
 }

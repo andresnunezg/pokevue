@@ -14,4 +14,11 @@ export interface PokemonDto {
   height: number
   weight: number
   types: Record<'type', PokemonTypeDto>[]
+  sprites: {
+    other: {
+      'official-artwork': {
+        front_default: string
+      }
+    }
+  }
 }
