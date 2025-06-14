@@ -1,3 +1,4 @@
+import { PokemonError } from '../errors';
 import type { PokemonBase } from '../models/Pokemon'
 import type Pokemon from '../models/Pokemon'
 import type { PokemonRepository } from './PokemonRepository'
@@ -11,7 +12,8 @@ export class PokemonUseCase {
     return await this.pokemonRepository.getPokemonList(offset)
   }
 
-  getPokemonDetailById = async (): Promise<Pokemon> => {
-    return this.pokemonRepository.getPokemonDetailById()
+  getPokemonDetailByName = async (name: Pokemon['name']): Promise<Pokemon> => {
+    if (name.trim().length === 0) throw new PokemonError('Pokemon name cannot be empty')
+    return this.pokemonRepository.getPokemonDetailByName(name.trim())
   }
 }

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useTemplateRef, computed } from 'vue'
+import type { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import useGetPokemons from '../controllers/useGetPokemons.controller'
+import useGetPokemonDetail from '../controllers/useGetPokemonDetail.controller'
 import SearchInputComponent from '@/common/presentation/components/SearchInputComponent.vue'
 import PokemonList from '../components/PokemonList.vue'
 import LoadingComponent from '@/common/presentation/components/LoadingComponent.vue'
+import ModalComponent from '@/common/presentation/components/ModalComponent.vue'
 
 const { pokemonsList, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } =
   useGetPokemons()
@@ -20,6 +23,11 @@ const handleScroll = () => {
     fetchNextPage()
   }
 }
+
+const { showModal, selectedPokemon, pokemonDetail, isPokemonDetailLoading } = useGetPokemonDetail()
+const handlePokemonSelect = (pokemon: PokemonBase) => {
+  selectedPokemon.value = pokemon
+}
 </script>
 
 <template>
@@ -33,6 +41,7 @@ const handleScroll = () => {
           v-for="(group, index) in pokemonsList.pages"
           :key="index"
           :pokemons="group.pokemon"
+          @select="handlePokemonSelect"
         />
         <div v-if="isLoading" class="loader-container">
           <loading-component />

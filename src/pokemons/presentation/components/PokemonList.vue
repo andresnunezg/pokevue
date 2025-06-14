@@ -3,12 +3,19 @@ import { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import PokemonRow from './PokemonRow.vue'
 
 defineProps<{ pokemons: PokemonBase[] }>()
+const emit = defineEmits<{
+  (e: 'select', pokemon: PokemonBase): void
+}>()
 </script>
 
 <template>
   <section class="pokemon-list-container">
     <ul class="pokemon-row-container" v-for="(pokemonRow, index) in pokemons" :key="index">
-      <pokemon-row :key="pokemonRow.id" :pokemon="pokemonRow" />
+      <pokemon-row
+        :key="pokemonRow.id"
+        :pokemon="pokemonRow"
+        @select="emit('select', $event)"
+      />
     </ul>
   </section>
 </template>

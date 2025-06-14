@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 
-defineProps<{ pokemon: PokemonBase }>()
+const props = defineProps<{ pokemon: PokemonBase }>()
+const emit = defineEmits<{
+  (e: 'select', pokemon: PokemonBase): void
+}>()
 </script>
 
 <template>
-  <li class="pokemon-row">
+  <li class="pokemon-row" @click="emit('select', props.pokemon)">
     {{ pokemon.name }}
   </li>
 </template>

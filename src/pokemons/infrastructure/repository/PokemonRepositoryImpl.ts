@@ -2,8 +2,8 @@ import HttpDataService from '@/data/DataService'
 import type Pokemon from '@/pokemons/domain/models/Pokemon'
 import { type PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import type { PokemonRepository } from '@/pokemons/domain/repository/PokemonRepository'
-import type PokemonBaseDto from '../adapters/PokemonDto'
-import { PokemonBaseTranslator } from '../adapters/PokemonTranslator'
+import type {  PokemonBaseDto, PokemonDto } from '../adapters/PokemonDto'
+import { PokemonBaseTranslator, PokemonTranslator } from '../adapters/PokemonTranslator'
 
 export default class PokemonRepositoryImpl implements PokemonRepository {
   constructor(private dataService = new HttpDataService()) {}
@@ -32,7 +32,11 @@ export default class PokemonRepositoryImpl implements PokemonRepository {
     }
   }
 
-  getPokemonDetailById(): Promise<Pokemon> {
-    throw new Error('Method not implemented.')
+  async getPokemonDetailByName(name: Pokemon['name']): Promise<Pokemon> {
+    const detailUrl = `pokemon/${name}`
+    const response = await this.dataService.get<PokemonDto>(detailUrl, {}
+    )
+
+    return PokemonTranslator.toDomain(response)
   }
 }

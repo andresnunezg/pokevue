@@ -5,5 +5,5 @@ export interface PokemonRepository {
   getPokemonList(
     offset: number,
   ): Promise<{ pokemon: PokemonBase[]; nextPokemons: number | undefined }>
-  getPokemonDetailById(): Promise<Pokemon>
+  getPokemonDetailByName(name: Pokemon['name']): Promise<Pokemon>
 }
