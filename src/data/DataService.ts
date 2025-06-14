@@ -1,4 +1,5 @@
 import type DataServiceRepository from './DataServiceRepository'
+import { NotFoundError } from './errors/NotFoundError'
 import { NotImplementedError } from './errors/NotImplementedError'
 
 export default class HttpDataService implements DataServiceRepository {
@@ -19,6 +20,10 @@ export default class HttpDataService implements DataServiceRepository {
         ...headers,
       },
     })
+
+    if (response.status === 404) {
+      throw new NotFoundError(endpoint)
+    }
 
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`)
