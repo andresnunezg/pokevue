@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoaderIcon from './icons/LoaderIcon.vue';
+import LoaderIcon from './icons/LoaderIcon.vue'
 </script>
 
 <template>

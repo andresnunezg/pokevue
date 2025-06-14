@@ -5,10 +5,11 @@ import SearchInputComponent from '@/common/presentation/components/SearchInputCo
 import PokemonList from '../components/PokemonList.vue'
 import LoadingComponent from '@/common/presentation/components/LoadingComponent.vue'
 
-const { pokemonsList, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } = useGetPokemons()
+const { pokemonsList, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } =
+  useGetPokemons()
 const isLoading = computed(() => isFetching.value || isFetchingNextPage.value)
 
-const containerScrollRef = useTemplateRef('scrollContainer')
+const containerScrollRef = useTemplateRef<HTMLDivElement>('scrollContainer')
 const handleScroll = () => {
   const scrollRefValue = containerScrollRef.value
   if (!scrollRefValue) return
@@ -56,7 +57,7 @@ const handleScroll = () => {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: var(--spacing-xl) 0 ;
+    padding: var(--spacing-xl) 0;
   }
   & .pokemon-list {
     max-width: 640px;

@@ -4,8 +4,8 @@ interface Props {
   height?: string
 }
 withDefaults(defineProps<Props>(), {
-  width: "106",
-  height: "106"
+  width: '106',
+  height: '106',
 })
 </script>
 

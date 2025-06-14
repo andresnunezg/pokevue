@@ -7,7 +7,7 @@ defineProps<{ pokemons: PokemonBase[] }>()
 
 <template>
   <section class="pokemon-list-container">
-    <ul class="pokemon-row-container" v-for="pokemonRow in pokemons">
+    <ul class="pokemon-row-container" v-for="(pokemonRow, index) in pokemons" :key="index">
       <pokemon-row :key="pokemonRow.id" :pokemon="pokemonRow" />
     </ul>
   </section>
