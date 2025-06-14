@@ -15,8 +15,6 @@ export default function useGetPokemonDetail() {
     await refetch()
   })
 
-  // TODO FIX LAYOUT OF MIXED OBJ PAGE GROUPS
-
   const {
     data: pokemonDetail,
     isPending: isPokemonDetailLoading,

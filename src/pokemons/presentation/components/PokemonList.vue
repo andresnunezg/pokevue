@@ -27,6 +27,7 @@ const emit = defineEmits<{
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
 }
 .pokemon-row-container {
   margin: 0;
