@@ -2,13 +2,21 @@ import PokemonType from './PokemonType'
 import PokemonPhysicalAttributes from './PokemonPhysicalAttributes'
 import { PokemonError, PokemonTypeError } from '../errors'
 
-export default class Pokemon {
+export class PokemonBase {
+  constructor(
+    public id: number,
+    public name: string,
+  ) {}
+}
+
+export default class Pokemon extends PokemonBase {
   constructor(
     public id: number,
     public name: string,
     public physicalAttributes: PokemonPhysicalAttributes,
     public types: PokemonType[],
   ) {
+    super(id, name)
     this.validate()
   }
 

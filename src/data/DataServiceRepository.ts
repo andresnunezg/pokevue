@@ -1,8 +1,4 @@
 export default interface DataServiceRepository {
-  get<T>(
-    headers: HeadersInit,
-    queryParams: Record<string, string>,
-    url: string
-  ): Promise<T>
+  get<T>(url: string, queryParams: Record<string, string>, headers: HeadersInit): Promise<T>
   post(): Promise<void>
 }
