@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PikachuIcon from './PikachuIcon.vue';
-import EllipseIcon from './EllipseIcon.vue';
+import PikachuIcon from './PikachuIcon.vue'
+import EllipseIcon from './EllipseIcon.vue'
 </script>
 
 <template>

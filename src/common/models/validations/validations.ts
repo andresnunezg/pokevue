@@ -1,4 +1,4 @@
-import { CoreError } from "@/common/models/errors"
+import { CoreError } from '@/common/models/errors'
 
 export function validateId(id: number) {
   if (!Number.isInteger(id)) {

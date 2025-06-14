@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue'
 import PikachuBackgroundIcon from '@/pokemons/presentation/components/icons/PikachuBackgroundIcon.vue'
-import AppRoutes from '@/router/AppRoutes';
+import AppRoutes from '@/router/AppRoutes'
 
-const router = useRouter();
+const router = useRouter()
 
 const handleGetStarted = () => {
   router.push({ name: AppRoutes.Home })
