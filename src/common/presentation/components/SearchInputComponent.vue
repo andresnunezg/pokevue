@@ -56,11 +56,9 @@ const handleKeydown = (event: KeyboardEvent) => {
   align-items: center;
   cursor: pointer;
   transition: color 0.2s ease;
-}
-
-.search-icon:hover {
-  color: #3b82f6;
-  /* TODO CHECK THIS */
+  & :hover {
+    opacity: 0.5;
+  }
 }
 
 .search-input {
@@ -78,6 +76,7 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 .search-input::placeholder {
   color: var(--color-gray-3);
+  font-size: var(--text-md);
   font-weight: 500;
 }
 </style>

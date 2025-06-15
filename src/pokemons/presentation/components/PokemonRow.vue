@@ -34,9 +34,11 @@ const handleFavoriteClick = (event: MouseEvent) => {
   border-radius: var(--border-radius-md);
   text-transform: capitalize;
   font-size: var(--text-lg);
-  font-weight: 500;
   background-color: var(--color-bg-tertiary);
   padding: var(--spacing-sm);
   cursor: pointer;
+  & span {
+    font-weight: 500;
+  }
 }
 </style>
