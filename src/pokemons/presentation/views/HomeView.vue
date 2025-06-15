@@ -10,6 +10,7 @@ import LoadingComponent from '@/common/presentation/components/LoadingComponent.
 import ModalComponent from '@/common/presentation/components/ModalComponent.vue'
 import PokemonDetailCard from '../components/PokemonDetailCard.vue'
 import EmptyResult from '../components/EmptyResult.vue'
+import PokemonNav from '../components/PokemonNav.vue'
 
 const showDetailModal = ref(false)
 
@@ -25,7 +26,7 @@ const handleScroll = () => {
   if (!scrollHeight || !clientHeight || !scrollHeight) return
   const isScrollTrigger = scrollTop + clientHeight >= scrollHeight - 50
   if (isScrollTrigger && hasNextPage) {
-    fetchNextPage()
+    // fetchNextPage()
   }
 }
 
@@ -69,10 +70,11 @@ const handleGoHome = () => {
 
 <template>
   <main class="home-container">
-    <section class="pokemon-list">
-      <div class="search-input-container">
-        <search-input-component v-model="searchInput" @search="handlePokemonSearch" />
-      </div>
+    <header class="home-header">
+      <search-input-component v-model="searchInput" @search="handlePokemonSearch" />
+    </header>
+
+    <section class="home-content pokemon-list">
       <empty-result @go-home="handleGoHome" v-if="showEmptyResult" />
       <div
         v-else-if="pokemonsList"
@@ -91,13 +93,20 @@ const handleGoHome = () => {
         </div>
       </div>
     </section>
+
+    <section class="home-footer">
+      <footer>
+        <pokemon-nav />
+      </footer>
+    </section>
+
+    <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
+      <div v-if="isDetailLoading || isLoadingSearch" class="detail-loader-container">
+        <loading-component />
+      </div>
+      <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />
+    </modal-component>
   </main>
-  <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
-    <div v-if="isDetailLoading || isLoadingSearch" class="detail-loader-container">
-      <loading-component />
-    </div>
-    <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />
-  </modal-component>
 </template>
 
 <style scoped lang="css">
@@ -105,23 +114,50 @@ const handleGoHome = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   width: 100%;
-  height: 100%;
-  & .search-input-container {
-    margin-bottom: var(--spacing-2xl);
+  min-height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+
+  & .home-header,
+  & .home-footer {
+    flex-grow: 0;
   }
-  & .pokemon-list {
+  & .home-header,
+  & .home-content {
     max-width: 640px;
     width: 100%;
   }
-  & .scroll-container {
-    overflow-y: auto;
-    height: 80svh;
+  & .home-header {
+    padding-top: 2rem;
+    margin-bottom: var(--spacing-xl);
+  }
+  & .home-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  & .home-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-bg-tertiary);
+    padding: var(--spacing-md);
+    & footer {
+      max-width: 640px;
+      min-width: 640px;
+      width: 100%;
+    }
   }
 }
-& .loader-container,
-& .detail-loader-container {
+
+.scroll-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.detail-loader-container {
   width: 100%;
   display: flex;
   justify-content: center;
