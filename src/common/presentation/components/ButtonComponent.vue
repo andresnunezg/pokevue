@@ -31,9 +31,10 @@ const btnClasses = computed(() => [
 
 <style scoped lang="css">
 .btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-sm);
   border: none;
   border-radius: 22px;
   padding: var(--spacing-xs) var(--spacing-md);
@@ -44,11 +45,23 @@ const btnClasses = computed(() => [
   text-decoration: none;
   outline: none;
   position: relative;
-  width: fit-content;
 }
 
 .btn--primary {
   background-color: var(--color-btn-bg-primary);
   color: var(--color-btn-text-primary);
+}
+.btn--primary:focus,
+.btn--primary:hover {
+  background-color: var(--color-bg-main-focus);
+}
+
+.btn--secondary {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-white);
+}
+.btn--secondary:focus,
+.btn--secondary:hover {
+  opacity: 0.8;
 }
 </style>
