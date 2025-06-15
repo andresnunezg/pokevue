@@ -41,7 +41,21 @@ const useFavoritePokemonStore = defineStore('favoritePokemons', () => {
     return favorites.value.some((p) => p.id === pokemonId)
   }
 
-  return { favorites, toggleFavorite, isFavorite }
+  const searchFavorites = (searchTerm: string): PokemonBase[] => {
+    if (!searchTerm.trim()) return favorites.value
+
+    const normalizedSearch = searchTerm.toLowerCase().trim()
+    return favorites.value.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(normalizedSearch),
+    )
+  }
+
+  return {
+    favorites,
+    toggleFavorite,
+    isFavorite,
+    searchFavorites,
+  }
 })
 
 export default useFavoritePokemonStore
