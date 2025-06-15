@@ -1,18 +1,28 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import AppRoutes from '@/router/AppRoutes'
 import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue'
 import PikachuBackgroundIcon from '@/pokemons/presentation/components/icons/PikachuBackgroundIcon.vue'
-import AppRoutes from '@/router/AppRoutes'
+import LoadingView from '@/common/presentation/components/LoadingView.vue'
+import { WELCOME_COMPLETED_KEY } from '@/common/utils/sessionStorageConstants'
 
 const router = useRouter()
+const showLoadingView = ref(false)
 
 const handleGetStarted = () => {
-  router.push({ name: AppRoutes.Home })
+  showLoadingView.value = true
+  sessionStorage.setItem(WELCOME_COMPLETED_KEY, 'true')
+
+  setTimeout(() => {
+    router.push({ name: AppRoutes.AllPokemons })
+  }, 2500)
 }
 </script>
 
 <template>
-  <main class="welcome-container">
+  <loading-view v-if="showLoadingView" />
+  <main v-lse class="welcome-container">
     <section class="card">
       <div class="pikachu-img-container">
         <pikachu-background-icon />
