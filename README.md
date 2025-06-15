@@ -1,45 +1,74 @@
-# vue-pokeapi
+# Vue PokéAPI Application
 
-This template should help get you started developing with Vue 3 in Vite.
+A modern Vue.js application that showcases Pokémon information using clean architecture principles, efficient data management, and a robust testing strategy.
 
-## Recommended IDE Setup
+## 📁 Requirements
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Node.js 22
+- pnpm package manager (equivalent)
 
-## Type Support for `.vue` Imports in TS
+## 🚀 Quick Start
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
+# Install dependencies
 pnpm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Run development server
 pnpm dev
-```
 
-### Type-Check, Compile and Minify for Production
+# Run tests
+pnpm test:unit
 
-```sh
+# Build for production
 pnpm build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## 📦 Core Dependencies
 
-```sh
-pnpm test:unit
-```
+- Vue 3.5 - Progressive JavaScript framework
+- Vue Query 5.80 - Server state management
+- Pinia 3.0 - State management
+- Vue Router 4.5 - Application routing
+- TypeScript 5.8 - Type safety
+- Vitest - Testing framework
 
-### Lint with [ESLint](https://eslint.org/)
+## 🏗 Architecture
 
-```sh
-pnpm lint
-```
+The project follows a clean architecture pattern divided into three main layers:
+
+- **Domain**: Contains business logic, models, and interfaces (Pokemon, PokemonType, etc.)
+- **Infrastructure**: Implements interfaces, handles external communication (API adapters, translators)
+- **Presentation**: Manages UI components, controllers, and state management (Vue components, stores)
+
+## 🧪 Testing Strategy
+
+Tests follow the Given-When-Then pattern:
+- **Given**: Set up the initial test state
+- **When**: Execute the action being tested
+- **Then**: Assert the expected outcomes
+
+Example locations: `src/pokemons/domain/models/__tests__/` and `src/pokemons/presentation/components/__tests__/`
+
+## 🔄 Data Management
+
+### DataService
+
+The `DataService` implements a repository pattern that:
+- Provides a single point of data access
+- Handles API communication abstractions
+- Manages error handling consistently
+- Enables easy testing through dependency injection
+
+### Vue Query Benefits
+
+- Implements infinite scrolling for large datasets
+- Provides automatic background updates
+- Manages disk caching for offline access
+- Optimizes re-renders with smart cache invalidation
+
+### Pinia Store
+
+- Manages favorite Pokémon state across routes
+- Provides reactive state management
+- Enables persistent storage integration
+- Maintains clean data flow between components
