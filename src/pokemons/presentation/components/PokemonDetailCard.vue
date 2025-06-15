@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import capitalize from '@/common/utils/capitalize'
 import type Pokemon from '@/pokemons/domain/models/Pokemon'
 import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue'
 import PokemonDetailRow from './PokemonDetailRow.vue'
+import FavoriteButtonComponent from '@/common/presentation/components/FavoriteButtonComponent.vue'
+import useFavoritePokemonStore from '@/pokemons/presentation/stores/favoritesStore'
+
+const favoriteStore = useFavoritePokemonStore()
 
 const props = defineProps<{
   pokemon: Pokemon
@@ -23,6 +27,8 @@ const handleShareClick = () => {
     }, 2000)
   })
 }
+
+const isFav = computed(() => favoriteStore.isFavorite(props.pokemon.id))
 </script>
 
 <template>
@@ -40,6 +46,10 @@ const handleShareClick = () => {
       <pokemon-detail-row title="Types" :value="types" />
       <div class="detail-card__actions">
         <button-component :label="buttonLabel" @click="handleShareClick" />
+        <favorite-button-component
+          :is-favorite="isFav"
+          @click="favoriteStore.toggleFavorite(pokemon)"
+        />
       </div>
     </div>
   </article>
@@ -91,5 +101,9 @@ const handleShareClick = () => {
 
 .detail-card__actions {
   margin-top: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--spacing-md);
 }
 </style>
