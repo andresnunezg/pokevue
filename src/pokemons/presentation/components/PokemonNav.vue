@@ -17,8 +17,6 @@ const getIsActiveRoute = (routeName: AppRoutes): ButtonVariant => {
 
 const navigateToAll = () => router.push({ name: AppRoutes.AllPokemons })
 const navigateToFavorites = () => router.push({ name: AppRoutes.FavoritePokemons })
-
-// TODO FIX THIS NAVBAR STYLES
 </script>
 
 <template>

@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import PokemonNav from '../components/PokemonNav.vue'
-
-// TODO MOVE TO LAYOUT FOLDER
 </script>
 
 <template>

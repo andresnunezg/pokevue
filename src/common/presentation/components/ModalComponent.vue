@@ -19,7 +19,6 @@ function close() {
 </script>
 
 <style scoped>
-/* TODO: REVIEW THIS STYLES */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -40,7 +39,6 @@ function close() {
   position: relative;
   width: 100%;
   max-width: 640px;
-  /* TODO AS THEME */
 }
 
 .close-btn {
