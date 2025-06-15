@@ -1,6 +1,7 @@
 enum AppRoutes {
   Welcome = 'welcome',
-  Home = 'home',
+  AllPokemons = 'pokemons',
+  FavoritePokemons = 'favorites',
 }
 
 export default AppRoutes
