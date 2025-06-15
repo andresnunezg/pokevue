@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PokemonViewLayout from './PokemonViewLayout.vue'
+import PokemonViewLayout from '../layouts/PokemonViewLayout.vue'
 import { useTemplateRef, computed, ref, watch } from 'vue'
 import { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import useGetPokemons from '../controllers/useGetPokemons.controller'
@@ -100,12 +100,3 @@ const handleGoHome = () => {
     <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />
   </modal-component>
 </template>
-
-<style scoped lang="css">
-.detail-loader-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-xl) 0;
-}
-</style>
