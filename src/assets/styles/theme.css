@@ -24,6 +24,8 @@
   --spacing-xl: 32px;
   --spacing-2xl: 48px;
   --spacing-3xl: 64px;
+
+  --width-640: 640px;
 }
 
 :root {
@@ -53,4 +55,6 @@
   --border-radius-md: 5px;
 
   --color-divider: var(--color-gray-4);
+
+  --width-md: var(--width-640);
 }

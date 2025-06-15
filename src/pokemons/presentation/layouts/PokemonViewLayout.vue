@@ -44,7 +44,7 @@ import PokemonNav from '../components/PokemonNav.vue'
   }
   & .home-header,
   & .home-content {
-    max-width: 640px;
+    max-width: var(--width-md);
     width: 100%;
   }
   & .home-header {
@@ -63,7 +63,7 @@ import PokemonNav from '../components/PokemonNav.vue'
     background-color: var(--color-bg-tertiary);
     padding: var(--spacing-md);
     & footer {
-      max-width: 640px;
+      max-width: var(--width-md);
       width: 100%;
     }
   }

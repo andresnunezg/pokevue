@@ -38,7 +38,7 @@ function close() {
   border-radius: var(--border-radius-md);
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: var(--width-md);
 }
 
 .close-btn {
