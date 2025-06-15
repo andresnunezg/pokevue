@@ -13,7 +13,7 @@ const useFavoritePokemonStore = defineStore('favoritePokemons', () => {
       try {
         const parsed = JSON.parse(saved)
         favorites.value = Array.isArray(parsed) ? parsed : []
-      } catch (e) {
+      } catch {
         favorites.value = []
       }
     }
@@ -25,7 +25,7 @@ const useFavoritePokemonStore = defineStore('favoritePokemons', () => {
     (newFavorites) => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newFavorites))
     },
-    { deep: true }
+    { deep: true },
   )
 
   const toggleFavorite = (pokemon: PokemonBase) => {

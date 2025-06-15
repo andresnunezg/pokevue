@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: AppRoutes.Home,
-      component: () => import('../pokemons/presentation/views/HomeView.vue'),
+      component: () => import('../pokemons/presentation/views/AllPokemonsView.vue'),
     },
     {
       path: `/${AppRoutes.Welcome}`,

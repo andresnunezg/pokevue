@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue';
-import ButtonVariant from '@/common/presentation/components/ButtonVariant';
-import MenuIcon from '@/common/presentation/components/icons/MenuIcon.vue';
-import StarIcon from '@/common/presentation/components/icons/StarIcon.vue';
+import ButtonComponent from '@/common/presentation/components/ButtonComponent.vue'
+import ButtonVariant from '@/common/presentation/components/ButtonVariant'
+import MenuIcon from '@/common/presentation/components/icons/MenuIcon.vue'
+import StarIcon from '@/common/presentation/components/icons/StarIcon.vue'
 </script>
 
 <template>
@@ -12,10 +12,7 @@ import StarIcon from '@/common/presentation/components/icons/StarIcon.vue';
         <menu-icon />
       </template>
     </button-component>
-    <button-component
-      :variant="ButtonVariant.Secondary"
-      label="Favorites"
-    >
+    <button-component :variant="ButtonVariant.Secondary" label="Favorites">
       <template #trailing-icon>
         <star-icon />
       </template>

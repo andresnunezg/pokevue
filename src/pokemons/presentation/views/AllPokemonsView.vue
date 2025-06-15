@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PokemonViewLayout from './PokemonViewLayout.vue'
 import { useTemplateRef, computed, ref, watch } from 'vue'
 import { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import useGetPokemons from '../controllers/useGetPokemons.controller'
@@ -10,7 +11,6 @@ import LoadingComponent from '@/common/presentation/components/LoadingComponent.
 import ModalComponent from '@/common/presentation/components/ModalComponent.vue'
 import PokemonDetailCard from '../components/PokemonDetailCard.vue'
 import EmptyResult from '../components/EmptyResult.vue'
-import PokemonNav from '../components/PokemonNav.vue'
 
 const showDetailModal = ref(false)
 
@@ -26,7 +26,7 @@ const handleScroll = () => {
   if (!scrollHeight || !clientHeight || !scrollHeight) return
   const isScrollTrigger = scrollTop + clientHeight >= scrollHeight - 50
   if (isScrollTrigger && hasNextPage) {
-    // fetchNextPage()
+    fetchNextPage()
   }
 }
 
@@ -69,12 +69,11 @@ const handleGoHome = () => {
 </script>
 
 <template>
-  <main class="home-container">
-    <header class="home-header">
+  <pokemon-view-layout>
+    <template #header>
       <search-input-component v-model="searchInput" @search="handlePokemonSearch" />
-    </header>
-
-    <section class="home-content pokemon-list">
+    </template>
+    <template #content>
       <empty-result @go-home="handleGoHome" v-if="showEmptyResult" />
       <div
         v-else-if="pokemonsList"
@@ -92,71 +91,17 @@ const handleGoHome = () => {
           <loading-component />
         </div>
       </div>
-    </section>
-
-    <section class="home-footer">
-      <footer>
-        <pokemon-nav />
-      </footer>
-    </section>
-
-    <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
-      <div v-if="isDetailLoading || isLoadingSearch" class="detail-loader-container">
-        <loading-component />
-      </div>
-      <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />
-    </modal-component>
-  </main>
+    </template>
+  </pokemon-view-layout>
+  <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
+    <div v-if="isDetailLoading || isLoadingSearch" class="detail-loader-container">
+      <loading-component />
+    </div>
+    <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />
+  </modal-component>
 </template>
 
 <style scoped lang="css">
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100dvh;
-  height: 100dvh;
-  max-height: 100dvh;
-  overflow: hidden;
-
-  & .home-header,
-  & .home-footer {
-    flex-grow: 0;
-  }
-  & .home-header,
-  & .home-content {
-    max-width: 640px;
-    width: 100%;
-  }
-  & .home-header {
-    padding-top: 2rem;
-    margin-bottom: var(--spacing-xl);
-  }
-  & .home-content {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-  }
-  & .home-footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: var(--color-bg-tertiary);
-    padding: var(--spacing-md);
-    & footer {
-      max-width: 640px;
-      min-width: 640px;
-      width: 100%;
-    }
-  }
-}
-
-.scroll-container {
-  height: 100%;
-  overflow-y: auto;
-}
-
 .detail-loader-container {
   width: 100%;
   display: flex;

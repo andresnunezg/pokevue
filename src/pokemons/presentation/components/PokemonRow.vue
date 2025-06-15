@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from 'vue'
 import type { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import FavoriteButtonComponent from '@/common/presentation/components/FavoriteButtonComponent.vue'
 import useFavoritePokemonStore from '@/pokemons/presentation/stores/favoritesStore'
