@@ -13,6 +13,9 @@ A modern Vue.js application that showcases Pokémon information using clean arch
 # Install dependencies
 pnpm install
 
+# Create .env file from example
+cp .env.example .env
+
 # Run development server
 pnpm dev
 
@@ -31,6 +34,16 @@ pnpm build
 - Vue Router 4.5 - Application routing
 - TypeScript 5.8 - Type safety
 - Vitest - Testing framework
+
+## 🔑 Environment Setup
+
+Create a `.env` file in the root directory with the following content:
+
+```bash
+VITE_API_URL=https://pokeapi.co/api/v2/
+```
+
+This configuration is required for the application to connect to the PokeAPI service.
 
 ## 🏗 Architecture
 
