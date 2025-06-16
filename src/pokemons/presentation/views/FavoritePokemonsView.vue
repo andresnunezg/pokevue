@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import PokemonViewLayout from '../layouts/PokemonViewLayout.vue'
 import { watch } from 'vue'
+import { useRouter } from 'vue-router'
+import PokemonViewLayout from '../layouts/PokemonViewLayout.vue'
 import { PokemonBase } from '@/pokemons/domain/models/Pokemon'
 import useSearchFavoritePokemon from '../controllers/useSearchFavoritePokemon.controller'
 import useGetPokemonDetail from '../controllers/useGetPokemonDetail.controller'
@@ -10,6 +11,9 @@ import LoadingComponent from '@/common/presentation/components/LoadingComponent.
 import ModalComponent from '@/common/presentation/components/ModalComponent.vue'
 import PokemonDetailCard from '../components/PokemonDetailCard.vue'
 import EmptyResult from '../components/EmptyResult.vue'
+import AppRoutes from '@/router/AppRoutes'
+
+const router = useRouter()
 
 const { searchInput, showEmptyResult, showDetailModal, filteredFavorites, isEmptyFavorites } =
   useSearchFavoritePokemon()
@@ -36,6 +40,7 @@ watch(showDetailModal, (newVal) => {
 const handleGoHome = () => {
   searchInput.value = ''
   showEmptyResult.value = false
+  router.push({ name: AppRoutes.AllPokemons })
 }
 </script>
 
