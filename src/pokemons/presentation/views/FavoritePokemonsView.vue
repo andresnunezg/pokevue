@@ -56,7 +56,7 @@ const handleGoHome = () => {
       </div>
     </template>
   </pokemon-view-layout>
-  <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
+  <modal-component v-if="!showEmptyResult" v-model="showDetailModal" :show-close-btn="!isDetailLoading">
     <div v-if="isDetailLoading" class="detail-loader-container">
       <loading-component />
     </div>

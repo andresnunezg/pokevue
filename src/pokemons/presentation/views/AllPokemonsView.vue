@@ -66,6 +66,8 @@ const handleGoHome = () => {
   searchInput.value = ''
   showEmptyResult.value = false
 }
+
+const isAnyDetailLoading = computed(() => isDetailLoading.value || isLoadingSearch.value)
 </script>
 
 <template>
@@ -93,8 +95,8 @@ const handleGoHome = () => {
       </div>
     </template>
   </pokemon-view-layout>
-  <modal-component v-if="!showEmptyResult" v-model="showDetailModal">
-    <div v-if="isDetailLoading || isLoadingSearch" class="detail-loader-container">
+  <modal-component v-if="!showEmptyResult" v-model="showDetailModal" :show-close-btn="!isAnyDetailLoading">
+    <div v-if="isAnyDetailLoading" class="detail-loader-container">
       <loading-component />
     </div>
     <pokemon-detail-card v-else-if="detailPokemon" :pokemon="detailPokemon" />

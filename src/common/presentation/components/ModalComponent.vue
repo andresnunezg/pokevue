@@ -1,22 +1,26 @@
-<template>
-  <Teleport to="body">
-    <div v-if="modalShowValue" class="modal-backdrop" @click.self="close">
-      <div class="modal-content">
-        <button class="close-btn" @click="close">&times;</button>
-        <!-- TODO: CREATE AND REPLACE THIS BUTTON -->
-        <slot />
-      </div>
-    </div>
-  </Teleport>
-</template>
-
 <script setup lang="ts">
+defineProps<{
+  showCloseBtn: boolean
+}>()
 const modalShowValue = defineModel()
 
 function close() {
   modalShowValue.value = false
 }
 </script>
+
+<template>
+  <Teleport to="body">
+    <div v-if="modalShowValue" class="modal-backdrop" @click.self="close">
+      <div class="modal-content">
+        <button v-show="showCloseBtn" class="close-btn" @click="close">
+          &times;
+        </button>
+        <slot />
+      </div>
+    </div>
+  </Teleport>
+</template>
 
 <style scoped>
 .modal-backdrop {
@@ -45,10 +49,18 @@ function close() {
   position: absolute;
   top: 0.5rem;
   right: 0.75rem;
-  background: none;
+  background: white;
+  padding: 0;
+  border-radius: 50px;
+  height: 30px;
+  width: 30px;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   cursor: pointer;
   z-index: 999;
+  display: grid;
+  place-content: center;
+  color: #79C9F9;
+  font-weight: 800;
 }
 </style>
